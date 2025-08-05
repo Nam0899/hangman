@@ -44,6 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
           children: [
             const Text(
               'Hello',
+              style: TextStyle(
+                fontFamily: 'FiraMono',
+              ),
             ),
           ],
         ),
