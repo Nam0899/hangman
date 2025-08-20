@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hangman/core/colors.dart';
 import 'package:hangman/utilities/topic.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 
@@ -16,14 +17,14 @@ const kWordButtonTextStyle = TextStyle(
 );
 
 const kHighScoreTableHeaders = TextStyle(
-  color: Colors.white,
+  color:AppColors.kWordButtonColor,
   fontSize: 30.0,
   fontWeight: FontWeight.w300,
   letterSpacing: 1.0,
 );
 
 const kHighScoreTableRowsStyle = TextStyle(
-  color: Colors.white,
+  color:AppColors.kWordButtonColor,
   fontSize: 27.0,
   fontWeight: FontWeight.w300,
   letterSpacing: 1.0,
@@ -152,7 +153,7 @@ const kDialogButtonTextStyle = TextStyle(
 
 const kWordTextStyle = TextStyle(
     fontSize: 57,
-    color: Colors.white,
+    color: AppColors.kWordColor,
     fontFamily: 'FiraMono',
     letterSpacing: 8);
 

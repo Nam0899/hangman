@@ -35,7 +35,7 @@ class MyApp extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        scaffoldBackgroundColor: AppColors.kColorPrimary,
+        // scaffoldBackgroundColor: AppColors.kColorPrimary,
         appBarTheme: AppBarTheme(
           color: AppColors.kColorPrimary,
           titleTextStyle: TextStyle(

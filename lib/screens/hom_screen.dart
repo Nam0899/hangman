@@ -25,163 +25,168 @@ class _HomeScreenState extends State<HomeScreen> {
     double height = MediaQuery.of(context).size.height;
     widget.hangmanWords.readWords();
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Center(
-              child: Container(
-                margin: const EdgeInsets.fromLTRB(8.0, 1.0, 8.0, 8.0),
-                child: const Text(
-                  'HANGMAN',
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 58.0,
-                      fontWeight: FontWeight.w300,
-                      letterSpacing: 3.0),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage("assets/images/background.jpg"), fit: BoxFit.cover,),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Center(
+                child: Container(
+                  margin: const EdgeInsets.fromLTRB(8.0, 1.0, 8.0, 8.0),
+                  child: const Text(
+                    'HANGMAN',
+                    style: TextStyle(
+                        color: AppColors.kWordButtonColor,
+                        fontSize: 58.0,
+                        fontWeight: FontWeight.w300,
+                        letterSpacing: 3.0),
+                  ),
                 ),
               ),
-            ),
-            Center(
-              child: Image.asset(
-                'assets/images/gallow.png',
-                height: height * 0.49,
+              Center(
+                child: Image.asset(
+                  'assets/images/gallow.png',
+                  height: height * 0.49,
+                ),
               ),
-            ),
-            const SizedBox(
-              height: 15.0,
-            ),
-            Center(
-              child: IntrinsicWidth(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    SizedBox(
-                      height: 64,
-                      child: ActionButton(
-                        buttonTitle: 'Start',
-                        onPress: () {
-                          Alert(
-                            style: kTopicAlertStyle,
-                            context: context,
-                            title: "Select a Topic",
-                            content: Padding(
-                              padding: const EdgeInsets.only(top: 12),
-                              child: Wrap(
-                                spacing: 8,
-                                children: List.generate(
-                                  kTopics.length,
-                                      (i) {
-                                    return MaterialButton(
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                      ),
-                                      color: AppColors.kColorPrimary,
-                                      child: Padding(
-                                        padding:
-                                        EdgeInsets.symmetric(horizontal: 12),
-                                        child: Row(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            SvgPicture.asset(
-                                              'assets/images/ic_${kTopics[i].fileStr}.svg',
-                                              height: 18,
-                                              width: 18,
-                                            ),
-                                            SizedBox(width: 8,),
-                                            Text(
-                                              kTopics[i].topic,
-                                              style: TextStyle(
-                                                fontSize: 14,
-                                                fontWeight: FontWeight.w600,
-                                                color: Colors.black
+              const SizedBox(
+                height: 15.0,
+              ),
+              Center(
+                child: IntrinsicWidth(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      SizedBox(
+                        height: 64,
+                        child: ActionButton(
+                          buttonTitle: 'Start',
+                          onPress: () {
+                            Alert(
+                              style: kTopicAlertStyle,
+                              context: context,
+                              title: "Select a Topic",
+                              content: Padding(
+                                padding: const EdgeInsets.only(top: 12),
+                                child: Wrap(
+                                  spacing: 8,
+                                  children: List.generate(
+                                    kTopics.length,
+                                        (i) {
+                                      return MaterialButton(
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                        ),
+                                        color: AppColors.kColorPrimary,
+                                        child: Padding(
+                                          padding:
+                                          EdgeInsets.symmetric(horizontal: 12),
+                                          child: Row(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              SvgPicture.asset(
+                                                'assets/images/ic_${kTopics[i].fileStr}.svg',
+                                                height: 18,
+                                                width: 18,
                                               ),
-                                              textAlign: TextAlign.center,
-                                            )
-                                          ],
+                                              SizedBox(width: 8,),
+                                              Text(
+                                                kTopics[i].topic,
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w600,
+                                                  color: Colors.black
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              )
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                      onPressed: () {
-                                        Navigator.pop(context);
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => GameScreen(
-                                              hangmanWords: widget.hangmanWords,
-                                              topic: kTopics[i].fileStr,
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) => GameScreen(
+                                                hangmanWords: widget.hangmanWords,
+                                                topic: kTopics[i].fileStr,
+                                              ),
                                             ),
-                                          ),
-                                        );
-                                      },
-                                    );
-                                  },
-                                ),
-                              ),
-                            ),
-                            buttons: [
-                              DialogButton(
-                                radius: BorderRadius.circular(10),
-                                width: 100,
-                                color: Colors.red,
-                                height: 40,
-                                child: Padding(
-                                  padding:
-                                  EdgeInsets.symmetric(horizontal: 12),
-                                  child: Row(
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          'Cancel',
-                                          style: TextStyle(
-                                            fontSize: 18,
-                                            fontWeight: FontWeight.w600,
-                                            color: Colors.white
-                                          ),
-                                          textAlign: TextAlign.center,
-                                        ),
-                                      )
-                                    ],
+                                          );
+                                        },
+                                      );
+                                    },
                                   ),
                                 ),
-                                onPressed: () {
-                                  Navigator.pop(context);
-                                  // Navigator.push(
-                                  //   context,
-                                  //   MaterialPageRoute(
-                                  //     builder: (context) => GameScreen(
-                                  //       hangmanWords: widget.hangmanWords,
-                                  //     ),
-                                  //   ),
-                                  // );
-                                },
-                              )
-                            ]
-                          ).show();
-                        },
+                              ),
+                              buttons: [
+                                DialogButton(
+                                  radius: BorderRadius.circular(10),
+                                  width: 100,
+                                  color: Colors.red,
+                                  height: 40,
+                                  child: Padding(
+                                    padding:
+                                    EdgeInsets.symmetric(horizontal: 12),
+                                    child: Row(
+                                      children: [
+                                        Expanded(
+                                          child: Text(
+                                            'Cancel',
+                                            style: TextStyle(
+                                              fontSize: 18,
+                                              fontWeight: FontWeight.w600,
+                                              color: Colors.white
+                                            ),
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        )
+                                      ],
+                                    ),
+                                  ),
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    // Navigator.push(
+                                    //   context,
+                                    //   MaterialPageRoute(
+                                    //     builder: (context) => GameScreen(
+                                    //       hangmanWords: widget.hangmanWords,
+                                    //     ),
+                                    //   ),
+                                    // );
+                                  },
+                                )
+                              ]
+                            ).show();
+                          },
+                        ),
                       ),
-                    ),
-                    SizedBox(
-                      height: 18,
-                    ),
-                    SizedBox(
-                      height: 64,
-                      child: ActionButton(
-                        buttonTitle: 'High Scores',
-                        onPress: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const LoadingScreen(),
-                            ),
-                          );
-                        },
+                      SizedBox(
+                        height: 18,
                       ),
-                    )
-                  ],
+                      SizedBox(
+                        height: 64,
+                        child: ActionButton(
+                          buttonTitle: 'High Scores',
+                          onPress: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const LoadingScreen(),
+                              ),
+                            );
+                          },
+                        ),
+                      )
+                    ],
+                  ),
                 ),
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ),
       ),
     );

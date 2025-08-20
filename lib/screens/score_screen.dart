@@ -18,26 +18,59 @@ class _ScoreScreenState extends State<ScoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: widget.query.isEmpty
-          ? Stack(
-              children: [
-                Center(
-                  child: Text(
-                    'No Scores Yet!',
-                    style: TextStyle(
-                      fontSize: 30,
-                      color: Colors.white,
-                    ),
-                  ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage("assets/images/background.jpg"),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: widget.query.isEmpty
+            ? Stack(
+          children: [
+            Center(
+              child: Text(
+                'No Scores Yet!',
+                style: TextStyle(
+                  fontSize: 30,
+                  color: AppColors.kWordButtonColor,
                 ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
+              alignment: Alignment.topLeft,
+              child: IconButton(
+                tooltip: 'Home',
+                highlightColor: Colors.transparent,
+                splashColor: Colors.transparent,
+                iconSize: 35,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                icon: Icon(
+                  MdiIcons.home,
+                  color: AppColors.kWordButtonColor,
+                ),
+              ),
+            ),
+          ],
+        )
+            : Column(
+          children: [
+            SizedBox(
+              height: kToolbarHeight * 0.45,
+            ),
+            Stack(
+              alignment: Alignment.bottomCenter,
+              children: [
                 Container(
-                  padding: EdgeInsets.symmetric(horizontal: 12, vertical: 24),
-                  alignment: Alignment.topLeft,
+                  alignment: Alignment.centerLeft,
                   child: IconButton(
                     tooltip: 'Home',
                     highlightColor: Colors.transparent,
                     splashColor: Colors.transparent,
-                    iconSize: 35,
+                    iconSize: 32,
                     onPressed: () {
                       Navigator.pop(context);
                     },
@@ -47,56 +80,31 @@ class _ScoreScreenState extends State<ScoreScreen> {
                     ),
                   ),
                 ),
-              ],
-            )
-          : Column(
-              children: [
-                SizedBox(
-                  height: kToolbarHeight * 0.45,
-                ),
-                Stack(
-                  alignment: Alignment.bottomCenter,
-                  children: [
-                    Container(
-                      alignment: Alignment.centerLeft,
-                      child: IconButton(
-                        tooltip: 'Home',
-                        highlightColor: Colors.transparent,
-                        splashColor: Colors.transparent,
-                        iconSize: 32,
-                        onPressed: () {
-                          Navigator.pop(context);
-                        },
-                        icon: Icon(
-                          MdiIcons.home,
-                          color: AppColors.kWordButtonColor,
-                        ),
-                      ),
-                    ),
-                    Center(
-                      child: Text(
-                        'High Scores',
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 38,
-                          fontWeight: FontWeight.w300,
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Table(
-                      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-                      textBaseline: TextBaseline.alphabetic,
-                      children: createRow(widget.query),
+                Center(
+                  child: Text(
+                    'High Scores',
+                    style: TextStyle(
+                      color: AppColors.kWordButtonColor,
+                      fontSize: 38,
+                      fontWeight: FontWeight.w300,
                     ),
                   ),
                 )
               ],
             ),
+            Expanded(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Table(
+                  defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+                  textBaseline: TextBaseline.alphabetic,
+                  children: createRow(widget.query),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
     );
   }
 

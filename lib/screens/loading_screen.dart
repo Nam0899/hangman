@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:hangman/core/colors.dart';
 import 'package:hangman/screens/score_screen.dart';
 import 'package:hangman/utilities/user_score.dart';
 import 'package:hangman/utilities/score_db.dart' as score_database;
@@ -40,9 +41,10 @@ class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-        child: SpinKitDoubleBounce(
-          color: Colors.white,
+        child: SpinKitCircle(
+          color: AppColors.kTooltipColor,
           size: 100,
         ),
       ),

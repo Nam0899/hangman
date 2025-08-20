@@ -8,6 +8,7 @@ class AppColors {
   static const kActionButtonColor = Color(0xFF1089ff);
   static const kActionButtonHighlightColor = Color(0xFF1089ff);
 
+  static const kWordColor = Color(0x991089ff);
   static const kWordButtonColor = Color(0xFF1089ff);
   static const kWordButtonColorDisable = Color(0xff689fd5);
 
